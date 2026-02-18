@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-islamic-cream text-gray-900 font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .dark body {
+    @apply bg-gray-950 text-gray-100;
+  }
+
+  /* Arabic text rendering */
+  .arabic-text {
+    font-family: 'Amiri Quran', 'Amiri', serif;
+    direction: rtl;
+    unicode-bidi: bidi-override;
+    line-height: 2.4;
+    letter-spacing: 0;
+  }
+
+  .arabic-ui {
+    font-family: 'Amiri', serif;
+    direction: rtl;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700;
+  }
+
+  .btn-primary {
+    @apply bg-islamic-green text-white px-4 py-2 rounded-lg font-medium
+           hover:bg-emerald-700 active:scale-95 transition-all duration-150
+           focus:outline-none focus:ring-2 focus:ring-islamic-green focus:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply bg-islamic-parchment dark:bg-gray-700 text-gray-700 dark:text-gray-200
+           px-4 py-2 rounded-lg font-medium border border-gray-200 dark:border-gray-600
+           hover:bg-gray-100 dark:hover:bg-gray-600 active:scale-95 transition-all duration-150
+           focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2;
+  }
+
+  .btn-gold {
+    @apply bg-islamic-gold text-white px-4 py-2 rounded-lg font-medium
+           hover:bg-gold-600 active:scale-95 transition-all duration-150
+           focus:outline-none focus:ring-2 focus:ring-gold-400 focus:ring-offset-2;
+  }
+
+  .ayah-card {
+    @apply card p-4 mb-3 hover:shadow-md transition-shadow duration-200 cursor-pointer;
+  }
+
+  .ayah-card.active {
+    @apply border-2 border-islamic-green shadow-md;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .badge-green {
+    @apply badge bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200;
+  }
+
+  .badge-gold {
+    @apply badge bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200;
+  }
+
+  /* Scrollbar styling */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    @apply bg-gray-100 dark:bg-gray-800;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+  }
+
+  /* Score circle */
+  .score-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+    border: 4px solid currentColor;
+  }
+
+  /* Waveform bars */
+  .waveform-bar {
+    @apply bg-islamic-green dark:bg-emerald-400 rounded-full transition-all duration-75;
+    width: 3px;
+    min-height: 4px;
+  }
+
+  /* Bismillah decoration */
+  .bismillah {
+    @apply text-center text-3xl font-arabic text-islamic-green dark:text-emerald-400 py-4;
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  }
+
+  .glass {
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .glass-dark {
+    background: rgba(17,24,39,0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+}
+
+/* Audio player custom */
+audio {
+  width: 100%;
+  height: 36px;
+  border-radius: 8px;
+}
+
+audio::-webkit-media-controls-panel {
+  background-color: #f0fdf4;
+}
+
+/* Smooth transitions */
+.page-enter {
+  animation: fadeIn 0.3s ease-in-out;
+}
