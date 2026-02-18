@@ -1,4 +1,4 @@
-import { Play, Pause, BookOpen, Mic } from 'lucide-react';
+import { Play, Pause, BookOpen } from 'lucide-react';
 import { toArabicNumerals } from '../utils/arabicUtils';
 import { useRef, useState } from 'react';
 
@@ -10,7 +10,6 @@ export default function AyahCard({
   fontSize,
   onClick,
   onOpenTafsir,
-  onPractice,
 }) {
   const audioRef  = useRef(null);
   const [playing, setPlaying] = useState(false);
@@ -91,14 +90,6 @@ export default function AyahCard({
             title="Voir le Tafsir"
           >
             <BookOpen size={15} />
-          </button>
-          <button
-            onClick={e => { e.stopPropagation(); onPractice?.(); }}
-            className="p-1.5 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/30
-                       text-red-500 dark:text-red-400 transition-colors"
-            title="Pratiquer la récitation"
-          >
-            <Mic size={15} />
           </button>
         </div>
       </div>

@@ -91,26 +91,6 @@
     @apply bg-gray-300 dark:bg-gray-600 rounded-full;
   }
 
-  /* Score circle */
-  .score-circle {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.25rem;
-    font-weight: 700;
-    border: 4px solid currentColor;
-  }
-
-  /* Waveform bars */
-  .waveform-bar {
-    @apply bg-islamic-green dark:bg-emerald-400 rounded-full transition-all duration-75;
-    width: 3px;
-    min-height: 4px;
-  }
-
   /* Bismillah decoration */
   .bismillah {
     @apply text-center text-3xl font-arabic text-islamic-green dark:text-emerald-400 py-4;

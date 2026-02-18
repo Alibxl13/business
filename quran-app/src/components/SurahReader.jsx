@@ -1,13 +1,12 @@
 import { useState, useRef, useCallback } from 'react';
 import {
-  ArrowLeft, Settings, BookOpen, Mic, ChevronUp,
+  ArrowLeft, Settings, BookOpen, ChevronUp,
   Loader2, AlertTriangle, X, Volume2, Globe
 } from 'lucide-react';
 import { useSurah } from '../hooks/useQuran';
 import { TRANSLATION_EDITIONS, RECITERS, TAFSIR_OPTIONS } from '../api/quranApi';
 import AyahCard from './AyahCard';
 import TafsirPanel from './TafsirPanel';
-import RecitationDetector from './RecitationDetector';
 
 const FONT_SIZES = ['sm', 'md', 'lg', 'xl'];
 const FONT_SIZE_LABELS = { sm: 'S', md: 'M', lg: 'L', xl: 'XL' };
@@ -21,7 +20,6 @@ export default function SurahReader({ surahNumber, onBack }) {
   const [activeAyah,         setActiveAyah]         = useState(null);
   const [tafsirOpen,         setTafsirOpen]         = useState(false);
   const [tafsirId,           setTafsirId]           = useState(169);
-  const [practiceAyah,       setPracticeAyah]       = useState(null);
 
   const { surah, loading, error } = useSurah(surahNumber, translationEdition, reciter);
 
@@ -30,10 +28,6 @@ export default function SurahReader({ surahNumber, onBack }) {
   const handleOpenTafsir = useCallback((ayah) => {
     setActiveAyah(ayah);
     setTafsirOpen(true);
-  }, []);
-
-  const handlePractice = useCallback((ayah) => {
-    setPracticeAyah(ayah);
   }, []);
 
   const scrollToTop = () => {
@@ -240,16 +234,7 @@ export default function SurahReader({ surahNumber, onBack }) {
           className="btn-secondary text-xs flex items-center gap-1.5 flex-1"
         >
           <BookOpen size={13} />
-          Tafsir
-        </button>
-        <button
-          onClick={() => {
-            if (surah.ayahs[0]) handlePractice(surah.ayahs[0]);
-          }}
-          className="btn-secondary text-xs flex items-center gap-1.5 flex-1"
-        >
-          <Mic size={13} />
-          Récitation IA
+          Tafsir du premier verset
         </button>
       </div>
 
@@ -265,7 +250,6 @@ export default function SurahReader({ surahNumber, onBack }) {
             fontSize={fontSize}
             onClick={() => setActiveAyah(ayah)}
             onOpenTafsir={() => handleOpenTafsir(ayah)}
-            onPractice={() => handlePractice(ayah)}
           />
         ))}
       </div>
@@ -297,14 +281,6 @@ export default function SurahReader({ surahNumber, onBack }) {
         </>
       )}
 
-      {/* Recitation detector modal */}
-      {practiceAyah && (
-        <RecitationDetector
-          ayah={practiceAyah}
-          surahNumber={surahNumber}
-          onClose={() => setPracticeAyah(null)}
-        />
-      )}
     </div>
   );
 }
